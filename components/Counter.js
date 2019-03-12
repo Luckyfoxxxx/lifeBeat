@@ -11,11 +11,14 @@ export default class Counter extends React.Component {
   }
 
   render() {
-    let {number} = this.state
     return (
       <View style={styles.container}>
-        <Text>{number}</Text>
-        <Tapper />
+        <Text style ={styles.counter}>
+          {this.props.count} 
+        </Text>
+        <Text style={styles.countertext}>
+          bpm
+        </Text>
       </View>
 
     );
@@ -26,12 +29,25 @@ export default class Counter extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+    
   },
   text: {
     width: '100%',
     height: 50,
-    backgroundColor: 'powderblue'
+  },
+  counter: {
+    color: '#00FFFF',
+    textAlign: 'center',
+    fontSize: 60,
+
+  },
+  countertext: {
+    color: '#00FFFF',
+    fontSize: 30,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   }
+
 });

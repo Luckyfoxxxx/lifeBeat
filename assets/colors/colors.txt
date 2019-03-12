@@ -1,0 +1,2 @@
+cyan: #00FFFF
+dark dark grey: #1D2121
