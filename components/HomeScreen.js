@@ -13,26 +13,58 @@ import Counter from './Counter.js';
   constructor(props) {
     super(props)
     this.state = {
-      number: 1
+      updates: 0,
+      taps: 0,
+      bpm: 0,
+      startTime: null,
+
     };
     this.handleClick = this.handleClick.bind(this);
 
   }
 
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 500);
+  }
+
+  tick() {
+    let duration = Date.now() - this.state.startTime;
+    duration = duration/1000;
+    let beatsPerMin = (this.state.taps / duration) * 60;
+    beatsPerMin = beatsPerMin.toFixed(2);
+    this.setState({bpm: beatsPerMin })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
 
   handleClick() {
-    this.setState({number: this.state.number+1 })
+    // if start time is not set, set the start time on first press
+    if(this.state.startTime == null) {
+      let start = Date.now();
+      this.setState({startTime: start});
+      this.setState({taps: this.state.taps+1});
+
+    }
+    this.setState({taps: this.state.taps+1});
+    let duration = Date.now() - this.state.startTime;
+    duration = duration/1000;
+    let beatsPerMin = (this.state.taps / duration) * 60;
+    beatsPerMin = beatsPerMin.toFixed(2);
+    this.setState({bpm: beatsPerMin })
   }
 
   render() {
     const {navigate} = this.props.navigation;
-    const count = this.state.number;
+    const bpm = this.state.bpm;
     return (
       <View style = {styles.container}>
         <Grid>
           <Row style = {styles.row}>
             <Counter 
-              count={count}
+              bpm={bpm}
             >
             </Counter>
             

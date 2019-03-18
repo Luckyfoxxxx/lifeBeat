@@ -14,7 +14,7 @@ export default class Counter extends React.Component {
     return (
       <View style={styles.container}>
         <Text style ={styles.counter}>
-          {this.props.count} 
+          {this.props.bpm} 
         </Text>
         <Text style={styles.countertext}>
           bpm

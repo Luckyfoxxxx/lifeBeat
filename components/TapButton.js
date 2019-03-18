@@ -9,9 +9,11 @@ export const TapButton = (props) => {
          style={styles.button}
          onPress={props.click}
         >
+          
           <Text>
             Tap the beat
           </Text>
+          
       
         </TouchableHighlight>
 
@@ -32,6 +34,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#656b83",
     alignItems: 'center',
+    flex: 1,
+  },
+
+  touchable: {
+    flex: 1,
   }
   
 })
