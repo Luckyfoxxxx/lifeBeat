@@ -71,21 +71,23 @@ class HomeScreen extends React.Component {
 
     }
 
-
+    if(this.state.currentTaps > 0) {
+      this.setState({currentTaps: this.state.currentTaps+1});
+    }
 
     this.setState({ taps: this.state.taps + 1 });
     let duration = Date.now() - this.state.startTime;
     // convert duration from ms to seconds
     duration = duration / 1000;
 
-    if(duration > 2 && this.state.currentTime == 0 ) {
+    if(duration > 2000 && this.state.currentTime == 0 ) {
       currentTime = Date.now();
       this.setState({currentTaps: this.state.currentTaps+1});
       this.setState({currentTime: currentTime});
       
     }
 
-    if(duration > 5) {
+    else if(duration > 5 ) {
       this.setState({startTime: this.state.currentTime});
       this.setState({taps: this.state.currentTaps});
       this.setState({currentTaps: 0})
