@@ -22,6 +22,7 @@ class HomeScreen extends React.Component {
       bpmArray: [50,55,66],
       startTime: null,
       lastPress: null,
+      duration: null,
 
 
     };
@@ -39,10 +40,13 @@ class HomeScreen extends React.Component {
     if (Date.now() - this.state.lastPress > 2000) {
       this.setState({ taps: 0 });
       this.setState({ bpm: 0 });
+      this.setState({duration: 0});
+      return;
     }
 
     let duration = Date.now() - this.state.startTime;
     duration = duration / 1000;
+    this.setState({duration: duration});
 
     let beatsPerMin = (this.state.taps / duration) * 60;
     beatsPerMin = beatsPerMin.toFixed(0);
@@ -64,6 +68,8 @@ class HomeScreen extends React.Component {
   handleClick() {
     // if start time is not set, set the start time on first press
     press = Date.now();
+    this.setState({ taps: this.state.taps + 1 });
+
     if (this.state.taps == 0) {
       let start = Date.now();
       this.setState({ startTime: start });
@@ -75,11 +81,11 @@ class HomeScreen extends React.Component {
       this.setState({currentTaps: this.state.currentTaps+1});
     }
 
-    this.setState({ taps: this.state.taps + 1 });
     let duration = Date.now() - this.state.startTime;
     // convert duration from ms to seconds
     duration = duration / 1000;
-
+    this.setState({duration: duration});
+/*
     if(duration > 2000 && this.state.currentTime == 0 ) {
       currentTime = Date.now();
       this.setState({currentTaps: this.state.currentTaps+1});
@@ -93,7 +99,7 @@ class HomeScreen extends React.Component {
       this.setState({currentTaps: 0})
       this.setState({currentTime: 0});
     }
-
+  */
 
     // calculate beats per minute
     let beatsPerMin = (this.state.taps / duration) * 60;
