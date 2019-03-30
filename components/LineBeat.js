@@ -1,22 +1,26 @@
 import React from 'react';
-import {VictoryChart, VictoryLine} from 'victory';
+import {VictoryChart, VictoryLine, VictoryTheme } from 'victory';
+import { StyleSheet, Text, View } from 'react-native';
+import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 class LineBeat extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
   render() {
+  
+    return (
 
 
-
-    <VictoryChart>
-      <VictoryLine
-        data={[
-          { x: 1, y: 2 },
-          { x: 2, y: 3 },
-          { x: 3, y: 5 },
-          { x: 4, y: 4 },
-          { x: 5, y: 6 }
-        ]}
-      />
-    </VictoryChart>
+      <View style={styles.container}>
+        <VictoryChart width={350} theme={VictoryTheme.material}>
+          <VictoryBar data={data} x="quarter" y="earnings" />
+        </VictoryChart>
+      </View>
+    )
   }
 }
 

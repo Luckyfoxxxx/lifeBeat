@@ -6,6 +6,7 @@ import { Button } from 'react-native';
 import { TapButton } from './TapButton.js';
 import Counter from './Counter.js';
 import BeatChart from './BeatChart.js';
+import AreaChartExample from './AreaChartExample.js';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -17,9 +18,9 @@ class HomeScreen extends React.Component {
       updates: 0,
       taps: 0,
       currentTaps: 0,
-      currentTime: 0,
+      currentTime: null,
       bpm: 0,
-      bpmArray: [50,55,66],
+      bpmArray: [0,1,2],
       startTime: null,
       lastPress: null,
       duration: null,
@@ -31,7 +32,7 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
+    this.interval = setInterval(() => this.tick(), 750);
   }
 
   tick() {
@@ -72,43 +73,30 @@ class HomeScreen extends React.Component {
 
     if (this.state.taps == 0) {
       let start = Date.now();
-      this.setState({ startTime: start });
-      this.setState({ lastPress: press });
+      this.setState({ startTime: start, lastPress: press });
 
     }
 
-    if(this.state.currentTaps > 0) {
+    if(this.state.duration > 2 ) {
+      let time = Date.now();
+      this.setState({currentTime: time});
+    }
+    if(this.state.duration > 2) {
       this.setState({currentTaps: this.state.currentTaps+1});
     }
+    if(this.state.duration > 5) {
 
+    }
     let duration = Date.now() - this.state.startTime;
     // convert duration from ms to seconds
     duration = duration / 1000;
     this.setState({duration: duration});
-/*
-    if(duration > 2000 && this.state.currentTime == 0 ) {
-      currentTime = Date.now();
-      this.setState({currentTaps: this.state.currentTaps+1});
-      this.setState({currentTime: currentTime});
-      
-    }
 
-    else if(duration > 5 ) {
-      this.setState({startTime: this.state.currentTime});
-      this.setState({taps: this.state.currentTaps});
-      this.setState({currentTaps: 0})
-      this.setState({currentTime: 0});
-    }
-  */
-
-    // calculate beats per minute
     let beatsPerMin = (this.state.taps / duration) * 60;
     beatsPerMin = beatsPerMin.toFixed(0);
-    this.setState({ bpm: beatsPerMin })
     let bpmArr = this.state.bpmArray;
     bpmArr.push(beatsPerMin);
-    this.setState({bpmArray: bpmArr})
-    this.setState({ lastPress: press });
+    this.setState({bpmArray: bpmArr, lastPress: press, bpm: beatsPerMin});
 
 
   }
@@ -117,6 +105,8 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const bpm = this.state.bpm;
     const bpmArr = this.state.bpmArray;
+    let test = [1,4,8,6];
+    let init = [0,67,155, 114];
     return (
       <View style={styles.container}>
         <Grid>
@@ -132,7 +122,7 @@ class HomeScreen extends React.Component {
 
           </Row>
           
-        <BeatChart data={bpmArr}/>
+        <BeatChart data={bpmArr}/> 
           
         </Grid>
 
