@@ -15,15 +15,14 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      updates: 0,
-      taps: 0,
-      currentTaps: 0,
-      currentTime: null,
       bpm: 0,
-      bpmArray: [0,1,2],
-      startTime: null,
-      lastPress: null,
-      duration: null,
+      bpmArr: [1,2,3],
+      startTime: 0,
+      tap1: 0,
+      tap2: 0,
+      tap3: 0,
+      tap4: 0
+      
 
 
     };
@@ -32,11 +31,11 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 750);
+    //this.interval = setInterval(() => this.tick(), 750);
   }
 
   tick() {
-
+    /*
     // reset if it is more than 2000ms since last press
     if (Date.now() - this.state.lastPress > 2000) {
       this.setState({ taps: 0 });
@@ -57,56 +56,63 @@ class HomeScreen extends React.Component {
       this.setState({ bpm: beatsPerMin })
     }
 
-
+ */
 
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    //clearInterval(this.interval);
   }
 
 
   handleClick() {
-    // if start time is not set, set the start time on first press
-    press = Date.now();
-    this.setState({ taps: this.state.taps + 1 });
+    // if start time is not set, et the start time on first press
+    let now = Date.now();
+    let p;
+    if(this.state.startTime == 0) {
+      this.setState({startTime: now})
+      let tap1 = now;
+      return;
+    }
 
-    if (this.state.taps == 0) {
-      let start = Date.now();
-      this.setState({ startTime: start, lastPress: press });
+    else if(this.state.tap2 == 0) {
+      this.setState({tap2: now});
+      p = this.state.tap2 - this.state.tap1;
+      
+    }
+
+    else if(this.state.tap3 == 0) {
+      this.setState({tap3: now})
+      p = ((this.state.tap2 - this.state.tap1) + (this.state.tap3 - this.state.tap2)) / 2;
+    }
+
+    else if(this.state.tap4 == 0) {
+      this.setState({tap4: now});
+      let p = ((this.state.p2 - this.state.p1) + (this.state.p3 - this.state.p2) + (this.state.p4 - this.state.p3)) / 2;
+    }
+
+    else {
+      this.setState({tap1: this.state.tap2, tap2: this.state.tap3, tap3: this.state.tap4, tap4: now});
+      p = ((this.state.tap2 - this.state.tap1) + (this.state.tap3 - this.state.tap2) +
+              (this.state.tap4 - this.state.tap3)) / 3
 
     }
 
-    if(this.state.duration > 2 ) {
-      let time = Date.now();
-      this.setState({currentTime: time});
-    }
-    if(this.state.duration > 2) {
-      this.setState({currentTaps: this.state.currentTaps+1});
-    }
-    if(this.state.duration > 5) {
+    let beats = Math.round((60000 / p));
+    this.setState({bpm: beats});
+    //this.setState({bpm: 60000 / p});
+    
+    //this.setState({bpm: this.state.bpm+1});
 
-    }
-    let duration = Date.now() - this.state.startTime;
-    // convert duration from ms to seconds
-    duration = duration / 1000;
-    this.setState({duration: duration});
-
-    let beatsPerMin = (this.state.taps / duration) * 60;
-    beatsPerMin = beatsPerMin.toFixed(0);
-    let bpmArr = this.state.bpmArray;
-    bpmArr.push(beatsPerMin);
-    this.setState({bpmArray: bpmArr, lastPress: press, bpm: beatsPerMin});
-
+  
+   
 
   }
 
   render() {
     const { navigate } = this.props.navigation;
     const bpm = this.state.bpm;
-    const bpmArr = this.state.bpmArray;
-    let test = [1,4,8,6];
-    let init = [0,67,155, 114];
+    const bpmArr = [1,2,3];
     return (
       <View style={styles.container}>
         <Grid>
