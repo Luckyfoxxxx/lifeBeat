@@ -13,8 +13,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-easy-grid": "^0.2.1",
     "react-native-svg-charts": "^5.2.0",
-    "react-navigation": "^3.5.1",
-    "victory": "^32.1.0"
+    "react-navigation": "^3.9.1",
+    "victory": "^32.2.2"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.1.1"

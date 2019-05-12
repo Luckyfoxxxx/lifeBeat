@@ -16,7 +16,12 @@ class HomeScreen extends React.Component {
     super(props)
     this.state = {
       bpm: 0,
-      bpmArr: [1,2,3],
+      bpmArr: [141,141,142, 143, 142, 142, 142, 143,
+              141, 142, 144,141,142, 140,142,142, 143, 145, 146, 145, 145,
+              144, 144, 143,142,145,144,142,142,144,143, 144,
+              145,144,142,143,142,142,143,144,145,144,144,142,
+              143, 144, 144, 145, 143, 142,142,142, 143, 144, 145, 143,
+              142],
       startTime: 0,
       tap1: 0,
       tap2: 0,
@@ -112,7 +117,7 @@ class HomeScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const bpm = this.state.bpm;
-    const bpmArr = [1,2,3];
+    const bpmArr = this.state.bpmArr;
     return (
       <View style={styles.container}>
         <Grid>
