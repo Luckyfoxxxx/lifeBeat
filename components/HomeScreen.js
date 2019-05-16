@@ -16,12 +16,13 @@ class HomeScreen extends React.Component {
     super(props)
     this.state = {
       bpm: 0,
-      bpmArr: [141,141,142, 143, 142, 142, 142, 143,
+      test: [141,141,142, 143, 142, 142, 142, 143,
               141, 142, 144,141,142, 140,142,142, 143, 145, 146, 145, 145,
               144, 144, 143,142,145,144,142,142,144,143, 144,
               145,144,142,143,142,142,143,144,145,144,144,142,
               143, 144, 144, 145, 143, 142,142,142, 143, 144, 145, 143,
               142],
+      bpmArr: [],
       startTime: 0,
       tap1: 0,
       tap2: 0,
@@ -83,28 +84,33 @@ class HomeScreen extends React.Component {
     else if(this.state.tap2 == 0) {
       this.setState({tap2: now});
       p = this.state.tap2 - this.state.tap1;
-      
+      return;
     }
 
     else if(this.state.tap3 == 0) {
       this.setState({tap3: now})
       p = ((this.state.tap2 - this.state.tap1) + (this.state.tap3 - this.state.tap2)) / 2;
+      return;
     }
 
     else if(this.state.tap4 == 0) {
       this.setState({tap4: now});
       let p = ((this.state.p2 - this.state.p1) + (this.state.p3 - this.state.p2) + (this.state.p4 - this.state.p3)) / 2;
+      return;
     }
 
     else {
       this.setState({tap1: this.state.tap2, tap2: this.state.tap3, tap3: this.state.tap4, tap4: now});
       p = ((this.state.tap2 - this.state.tap1) + (this.state.tap3 - this.state.tap2) +
               (this.state.tap4 - this.state.tap3)) / 3
-
+     
     }
 
     let beats = Math.round((60000 / p));
     this.setState({bpm: beats});
+    arr = this.state.bpmArr;
+    arr.push(beats);      
+    this.setState({bpmArr: arr});
     //this.setState({bpm: 60000 / p});
     
     //this.setState({bpm: this.state.bpm+1});
@@ -138,6 +144,7 @@ class HomeScreen extends React.Component {
         </Grid>
 
       </View>
+      
     );
   }
 }
