@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
+  "packagerPort": 19001,
+  "packagerPid": 31731,
   "expoServerNgrokUrl": "https://de-tgg.anonymous.lifebeat.exp.direct",
   "packagerNgrokUrl": "https://packager.de-tgg.anonymous.lifebeat.exp.direct",
-  "ngrokPid": 5514,
+  "ngrokPid": 31815,
   "webpackServerPort": null
 }

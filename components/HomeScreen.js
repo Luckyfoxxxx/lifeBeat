@@ -10,7 +10,7 @@ import AreaChartExample from './AreaChartExample.js';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Lifebeat',
+    title: 'PocketPinard',
   };
   constructor(props) {
     super(props)
@@ -41,28 +41,7 @@ class HomeScreen extends React.Component {
   }
 
   tick() {
-    /*
-    // reset if it is more than 2000ms since last press
-    if (Date.now() - this.state.lastPress > 2000) {
-      this.setState({ taps: 0 });
-      this.setState({ bpm: 0 });
-      this.setState({duration: 0});
-      return;
-    }
-
-    let duration = Date.now() - this.state.startTime;
-    duration = duration / 1000;
-    this.setState({duration: duration});
-
-    let beatsPerMin = (this.state.taps / duration) * 60;
-    beatsPerMin = beatsPerMin.toFixed(0);
-
-    // Only set BPM if duration is more than 0,2 sec to avoid very high bpm on first press
-    if (duration > 0.2) {
-      this.setState({ bpm: beatsPerMin })
-    }
-
- */
+  
 
   }
 

@@ -13,6 +13,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-easy-grid": "^0.2.1",
     "react-native-svg-charts": "^5.2.0",
+    "react-native-svg-uri": "^1.2.3",
     "react-navigation": "^3.9.1",
     "victory": "^32.2.2"
   },
