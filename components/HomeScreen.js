@@ -24,6 +24,7 @@ class HomeScreen extends React.Component {
               142],
       bpmArr: [],
       startTime: 0,
+      lastPress: 0,
       tap1: 0,
       tap2: 0,
       tap3: 0,
@@ -37,22 +38,29 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    //this.interval = setInterval(() => this.tick(), 750);
+    this.interval = setInterval(() => this.tick(), 1000);
+    
   }
 
   tick() {
-  
-
+    if(this.state.lastPress != 0 && (Date.now() - this.state.lastPress) > 5000 ) {
+      this.setState({startTime: 0, tap1: 0, tap2: 0, tap3: 0, tap4: 0});
+      arr = this.state.bpmArr;
+      arr.push(0);      
+      this.setState({bpmArr: arr, bpm: 0, lastPress: 0});
+      // write 0 to arr
+    }
   }
 
   componentWillUnmount() {
-    //clearInterval(this.interval);
+    clearInterval(this.interval);
   }
 
 
   handleClick() {
     // if start time is not set, et the start time on first press
     let now = Date.now();
+    this.setState({lastPress: now});
     let p;
     if(this.state.startTime == 0) {
       this.setState({startTime: now})
@@ -103,6 +111,7 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     const bpm = this.state.bpm;
     const bpmArr = this.state.bpmArr;
+    const starttime = this.state.startTime;
     return (
       <View style={styles.container}>
         <Grid>
@@ -118,7 +127,7 @@ class HomeScreen extends React.Component {
 
           </Row>
           
-        <BeatChart data={bpmArr}/> 
+        <BeatChart data={bpmArr} starttime={starttime}/> 
           
         </Grid>
 

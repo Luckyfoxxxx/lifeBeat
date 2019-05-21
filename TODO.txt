@@ -1,5 +1,5 @@
 TODO
-Add bpm for last 10 sec and bpm for first 30 sec. Add description over main BPM. E.G 
-"bpm for the whole duration"
-"bpm for last 10 sec"
-"bpm for first 10 sec"
+
+make Heartbeat animation on startup
+Fix graph by removing the first datapoint after 1 min/30 sec have passed. That way the number of points 
+On the graph are constant after 1min/30 sec
