@@ -28,7 +28,8 @@ class HomeScreen extends React.Component {
       tap1: 0,
       tap2: 0,
       tap3: 0,
-      tap4: 0
+      tap4: 0,
+      chartScale: [0,25,50,100,125,150,175,200],
       
 
 
@@ -94,10 +95,9 @@ class HomeScreen extends React.Component {
     }
 
     let beats = Math.round((60000 / p));
-    this.setState({bpm: beats});
     arr = this.state.bpmArr;
     arr.push(beats);      
-    this.setState({bpmArr: arr});
+    this.setState({bpmArr: arr, bpm: beats});
     //this.setState({bpm: 60000 / p});
     
     //this.setState({bpm: this.state.bpm+1});
@@ -112,6 +112,7 @@ class HomeScreen extends React.Component {
     const bpm = this.state.bpm;
     const bpmArr = this.state.bpmArr;
     const starttime = this.state.startTime;
+    const {chartScale} = this.state;
     return (
       <View style={styles.container}>
         <Grid>
@@ -127,7 +128,7 @@ class HomeScreen extends React.Component {
 
           </Row>
           
-        <BeatChart data={bpmArr} starttime={starttime}/> 
+        <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
           
         </Grid>
 
