@@ -4,7 +4,10 @@ import Counter from './components/Counter.js';
 import Stats from './components/Stats.js';
 import HomeScreen from './components/HomeScreen';
 import SplashScreen from './components/SplashScreen';
+import Menu from './components/Menu.js';
+import HomeScreenHeader from './components/HomeScreenHeader.js';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+
 
 
 
@@ -16,10 +19,16 @@ const AppNavigator = createStackNavigator(
     stats: {
       screen: Stats 
     },
+    menu: {
+      screen: Menu
+    },
+    header: {
+      screen: HomeScreenHeader
+    },
   },
   {
     initialRouteName: 'Home'
-
+    
   },
   
 );

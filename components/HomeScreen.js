@@ -7,10 +7,11 @@ import { TapButton } from './TapButton.js';
 import Counter from './Counter.js';
 import BeatChart from './BeatChart.js';
 import AreaChartExample from './AreaChartExample.js';
+import HomeScreenHeader from './HomeScreenHeader.js';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'PocketPinard',
+    headerTitle: <HomeScreenHeader />
   };
   constructor(props) {
     super(props)
@@ -123,7 +124,7 @@ class HomeScreen extends React.Component {
             </Counter>
 
           </Row>
-          <Row style={styles.row1}>
+          <Row style={styles.row}>
             <TapButton click={this.handleClick} />
 
           </Row>
@@ -143,15 +144,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1D2121'
   },
-  row1: {
-    backgroundColor: "#007F7F",
-  },
+
   row: {
     backgroundColor: '#1D2121'
   },
-  row2: {
-    backgroundColor: '#1D2121'
-  }
+  
 })
 
 export default HomeScreen;
