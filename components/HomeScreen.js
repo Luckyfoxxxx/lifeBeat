@@ -36,16 +36,21 @@ class HomeScreen extends React.Component {
 
     };
     this.handleClick = this.handleClick.bind(this);
+    this.initInterval = this.initInterval.bind(this);
 
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
     
   }
 
+  initInterval() {
+    this.interval = setInterval(() => this.tick(), 1000);
+
+  }
+
   tick() {
-    if(this.state.lastPress != 0 && (Date.now() - this.state.lastPress) > 5000 ) {
+    if(this.state.lastPress != 0 && (Date.now() - this.state.lastPress) > 2000 ) {
       this.setState({startTime: 0, tap1: 0, tap2: 0, tap3: 0, tap4: 0});
       arr = this.state.bpmArr;
       arr.push(0);      
@@ -60,13 +65,14 @@ class HomeScreen extends React.Component {
 
 
   handleClick() {
-    // if start time is not set, et the start time on first press
+    // if start time is not set, set the start time on first press
     let now = Date.now();
     this.setState({lastPress: now});
     let p;
     if(this.state.startTime == 0) {
       this.setState({startTime: now})
       let tap1 = now;
+      this.initInterval();
       return;
     }
 
@@ -95,10 +101,21 @@ class HomeScreen extends React.Component {
      
     }
 
+    
     let beats = Math.round((60000 / p));
     arr = this.state.bpmArr;
-    arr.push(beats);      
-    this.setState({bpmArr: arr, bpm: beats});
+    if(Math.abs(beats - this.state.bpm) >= 5 ) {
+      arr.push(beats);      
+      this.setState({bpmArr: arr, bpm: beats});
+      return;
+    }
+
+    arr.push(beats);
+    this.setState({bpmArr: arr});
+
+    
+
+
     //this.setState({bpm: 60000 / p});
     
     //this.setState({bpm: this.state.bpm+1});

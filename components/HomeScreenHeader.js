@@ -27,7 +27,7 @@ class HomeScreenHeader extends React.Component {
                     onPress={() => this.props.navigation.navigate('menu')}
                 >
                     <Image
-                        source={require('../assets/png/menu.png')}
+                        source={require('../assets/png/menu_2.png')}
                         style={styles.img}
                     
                     />
@@ -49,9 +49,8 @@ const styles = StyleSheet.create({
     },
 
     img: {
-        height: 50,
-        width: 50,
-        marginLeft: 100
+        marginLeft: 5,
+        marginTop: 30
     }
 
 

@@ -1,13 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Button} from 'react-native';
 export default class Menu extends React.Component {
 
     render() {
         return (
             <View>
-                <Text>
-                    Menu
-                </Text>
+                <Button 
+                    title='save graph'
+                    color='#656b83'
+                >
+                </Button>
+                <Button
+                    title='reset graph'
+                    color='#656b83'
+                >
+
+                </Button>
             </View>
         )
     }
