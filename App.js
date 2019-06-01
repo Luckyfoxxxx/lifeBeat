@@ -7,6 +7,7 @@ import SplashScreen from './components/SplashScreen';
 import Menu from './components/Menu.js';
 import HomeScreenHeader from './components/HomeScreenHeader.js';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
+import {ThemeContext, themes} from './assets/themes/themes';
 
 
 
@@ -41,7 +42,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      theme: themes.dark,
     }
   }
 
@@ -52,13 +54,15 @@ export default class App extends React.Component {
   }
 
   render() {
+    const {theme} = this.state; 
     const isLoading = this.state.isLoading;
     if(this.state.isLoading) {
       return <SplashScreen />;
     }
     return (
-      
-      <AppContainer />
+      <ThemeContext.Provider value={theme}>
+        <AppContainer />
+      </ThemeContext.Provider>
     );
   }
 }

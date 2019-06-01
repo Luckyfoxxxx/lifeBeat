@@ -8,6 +8,7 @@ import Counter from './Counter.js';
 import BeatChart from './BeatChart.js';
 import AreaChartExample from './AreaChartExample.js';
 import HomeScreenHeader from './HomeScreenHeader.js';
+import { ThemeContext } from '../assets/themes/themes.js';
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -17,12 +18,6 @@ class HomeScreen extends React.Component {
     super(props)
     this.state = {
       bpm: 0,
-      test: [141,141,142, 143, 142, 142, 142, 143,
-              141, 142, 144,141,142, 140,142,142, 143, 145, 146, 145, 145,
-              144, 144, 143,142,145,144,142,142,144,143, 144,
-              145,144,142,143,142,142,143,144,145,144,144,142,
-              143, 144, 144, 145, 143, 142,142,142, 143, 144, 145, 143,
-              142],
       bpmArr: [],
       startTime: 0,
       lastPress: 0,
@@ -30,7 +25,7 @@ class HomeScreen extends React.Component {
       tap2: 0,
       tap3: 0,
       tap4: 0,
-      chartScale: [0,25,50,100,125,150,175,200],
+      chartScale: [60,100,140,180,220],
       
 
 
@@ -53,7 +48,7 @@ class HomeScreen extends React.Component {
     if(this.state.lastPress != 0 && (Date.now() - this.state.lastPress) > 2000 ) {
       this.setState({startTime: 0, tap1: 0, tap2: 0, tap3: 0, tap4: 0});
       arr = this.state.bpmArr;
-      arr.push(0);      
+      arr.push(0);
       this.setState({bpmArr: arr, bpm: 0, lastPress: 0});
       // write 0 to arr
     }
@@ -103,9 +98,9 @@ class HomeScreen extends React.Component {
 
     
     let beats = Math.round((60000 / p));
-    arr = this.state.bpmArr;
+    let arr = this.state.bpmArr;
     if(Math.abs(beats - this.state.bpm) >= 5 ) {
-      arr.push(beats);      
+      arr.push(beats);
       this.setState({bpmArr: arr, bpm: beats});
       return;
     }
@@ -126,7 +121,6 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const bpm = this.state.bpm;
     const bpmArr = this.state.bpmArr;
     const starttime = this.state.startTime;
@@ -155,6 +149,8 @@ class HomeScreen extends React.Component {
     );
   }
 }
+
+HomeScreen.contextType = ThemeContext;
 
 const styles = StyleSheet.create({
   container: {

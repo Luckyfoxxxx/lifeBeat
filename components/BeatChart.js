@@ -7,24 +7,26 @@ import * as scale from 'd3-scale';
 const BeatChart = ({ ...props }) => (
     <View style={styles.container}>
       <YAxis
-        style={{ marginHorizontal: 10 }}
+        style={{ marginHorizontal: 10  }}
         data={ props.chartscale }
         formatLabel={ (value) => value }
-        contentInset={{ top: 20, bottom: 20,  }}
-        svg={{ fontSize: 15, fill: 'grey' }}
+        contentInset={{ top: 20, bottom: 5   }}
+        svg={{ fontSize: 12, fill: 'grey' }}
+        numberOfTicks={9}
       />
       <LineChart
-        style={{ height: 200 }}
+        style={{ height: 250 }}
         data={props.data}
         svg={{ stroke: 'rgb(0, 255, 255)' }}
-        contentInset={{ top: 20, bottom: 20 }}
-        showGrid={false}
-        yMin={0}
-        yMax={200}
+        contentInset={{ top: 20, bottom: 5 }}
+        yMin={60}
+        yMax={220}
         style={{ flex: 1, marginLeft: 20 }}
+        numberOfTicks={9}
+        showGrid={true}
         
       >
-      
+        <Grid />
       </LineChart>
       
       
@@ -36,7 +38,7 @@ const BeatChart = ({ ...props }) => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: 250,
     flexDirection: 'row',
   }
 })
