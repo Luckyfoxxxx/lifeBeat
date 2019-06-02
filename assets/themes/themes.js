@@ -8,6 +8,7 @@ export const themes = {
         background: '#1D2121',
         textcolor: '#00ffff',
         textcolorrgb: '0, 255, 255',
+        tapbutton: '#656b83'
 
     }
 };

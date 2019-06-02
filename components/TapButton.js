@@ -4,7 +4,7 @@ import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 
 export const TapButton = (props) => {
     return (
-      <View style ={styles.container}>
+      <View style ={styles.container} >
         <TouchableHighlight
          style={styles.button}
          onPress={props.click}

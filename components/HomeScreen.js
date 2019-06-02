@@ -132,28 +132,33 @@ class HomeScreen extends React.Component {
     const starttime = this.state.startTime;
     const {chartScale} = this.state;
     return (
-      <View style={styles.container}>
-          <View style={styles.row1}>
-            <Counter
-              bpm={bpm}
-            >
-            </Counter>
-          </View>
+      <ThemeContext.Consumer>
+        {value => (
 
-          <View style={styles.row2}>
-            <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
-          </View>
+        
+          <View style={styles.container}>
+              <View style={styles.row1}>
+                <Counter
+                  bpm={bpm}
+                >
+                </Counter>
+              </View>
 
-          <View style={styles.row3}>
-            <TapButton click={this.handleClick} />
+              <View style={styles.row2}>
+                <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
+              </View>
+
+              <View style={styles.row3}>
+                <TapButton click={this.handleClick} theme={value}/>
+              </View>
           </View>
-      </View>
+        )}
+      </ThemeContext.Consumer>
       
     );
   }
 }
 
-HomeScreen.contextType = ThemeContext;
 
 const styles = StyleSheet.create({
   container: {
@@ -162,17 +167,14 @@ const styles = StyleSheet.create({
   },
 
   row1: {
-    backgroundColor: '#1D2121',
     flex: 0.45
   },
 
   row2: {
-    backgroundColor: '#1D2121',
     flex: 1,
   },
 
   row3: {
-    backgroundColor: '#1D2121',
     flex: 0.6,
   }
   
