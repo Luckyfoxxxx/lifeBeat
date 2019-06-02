@@ -21,6 +21,7 @@ class HomeScreen extends React.Component {
       bpmArr: [],
       startTime: 0,
       lastPress: 0,
+      lastUpdated: 0,
       tap1: 0,
       tap2: 0,
       tap3: 0,
@@ -49,7 +50,7 @@ class HomeScreen extends React.Component {
       this.setState({startTime: 0, tap1: 0, tap2: 0, tap3: 0, tap4: 0});
       arr = this.state.bpmArr;
       arr.push(0);
-      this.setState({bpmArr: arr, bpm: 0, lastPress: 0});
+      this.setState({bpmArr: arr, bpm: 0, lastPress: 0, lastUpdated: 0});
       // write 0 to arr
     }
   }
@@ -99,9 +100,9 @@ class HomeScreen extends React.Component {
     
     let beats = Math.round((60000 / p));
     let arr = this.state.bpmArr;
-    if(Math.abs(beats - this.state.bpm) >= 5 ) {
+    if(Math.abs(beats - this.state.bpm) >= 5 && now - this.state.lastUpdated >= 1500) {
       arr.push(beats);
-      this.setState({bpmArr: arr, bpm: beats});
+      this.setState({bpmArr: arr, bpm: beats, lastUpdated: now});
       return;
     }
 
@@ -127,22 +128,22 @@ class HomeScreen extends React.Component {
     const {chartScale} = this.state;
     return (
       <View style={styles.container}>
-        <Grid>
-          <Row style={styles.row}>
+          <View style={styles.row1}>
             <Counter
               bpm={bpm}
             >
             </Counter>
 
-          </Row>
-          <Row style={styles.row}>
+          </View>
+          
+          
+          
+          <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
+          <View style={styles.row2}>
             <TapButton click={this.handleClick} />
 
-          </Row>
+          </View>
           
-        <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
-          
-        </Grid>
 
       </View>
       
@@ -158,9 +159,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#1D2121'
   },
 
-  row: {
-    backgroundColor: '#1D2121'
+  row1: {
+    backgroundColor: '#1D2121',
+    flex: 0.7
   },
+
+  row2: {
+    backgroundColor: '#1D2121',
+    flex: 1,
+  }
   
 })
 

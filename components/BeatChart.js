@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
 import * as scale from 'd3-scale';
 
 
 const BeatChart = ({ ...props }) => (
+  <ImageBackground style={styles.background}>
     <View style={styles.container}>
       <YAxis
         style={{ marginHorizontal: 10  }}
@@ -32,14 +33,20 @@ const BeatChart = ({ ...props }) => (
       
       
     </View>
+  </ImageBackground>
 ); 
 
 
 
 const styles = StyleSheet.create({
   container: {
-    height: 250,
+    height: 300,
     flexDirection: 'row',
+  },
+
+  background: {
+    width: '100%',
+    height: 300
   }
 })
 
