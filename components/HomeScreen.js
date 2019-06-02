@@ -100,6 +100,11 @@ class HomeScreen extends React.Component {
     
     let beats = Math.round((60000 / p));
     let arr = this.state.bpmArr;
+
+    // If the array has more than 100 points. remove the first element of the array
+    if(arr.length >= 100) {arr.shift()};
+
+    // make sure to not update the Counter unless the BPM has changed with more than 5 and there is more than 1,5 sec since last update. 
     if(Math.abs(beats - this.state.bpm) >= 5 && now - this.state.lastUpdated >= 1500) {
       arr.push(beats);
       this.setState({bpmArr: arr, bpm: beats, lastUpdated: now});
@@ -133,18 +138,15 @@ class HomeScreen extends React.Component {
               bpm={bpm}
             >
             </Counter>
-
           </View>
-          
-          
-          
-          <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
+
           <View style={styles.row2}>
-            <TapButton click={this.handleClick} />
-
+            <BeatChart data={bpmArr} starttime={starttime} chartscale={chartScale}/> 
           </View>
-          
 
+          <View style={styles.row3}>
+            <TapButton click={this.handleClick} />
+          </View>
       </View>
       
     );
@@ -161,12 +163,17 @@ const styles = StyleSheet.create({
 
   row1: {
     backgroundColor: '#1D2121',
-    flex: 0.7
+    flex: 0.45
   },
 
   row2: {
     backgroundColor: '#1D2121',
     flex: 1,
+  },
+
+  row3: {
+    backgroundColor: '#1D2121',
+    flex: 0.6,
   }
   
 })
