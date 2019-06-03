@@ -41,7 +41,7 @@ class HomeScreenHeader extends React.Component {
 const styles = StyleSheet.create({
 
     headerContainer: {
-        backgroundColor: '#1D2121',
+        backgroundColor: '#c9f7f9',
         flex: 1,
         height: 100,
         marginTop: -10,

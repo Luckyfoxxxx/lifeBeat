@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
     height: 50,
   },
   counter: {
-    color: '#00FFFF',
+    color: '#000000',
     textAlign: 'center',
     fontSize: 60,
 
   },
   countertext: {
-    color: '#00FFFF',
+    color: '#000000',
     fontSize: 30,
     fontWeight: 'bold',
     textTransform: 'uppercase',

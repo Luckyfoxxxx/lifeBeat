@@ -1,24 +1,24 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
-import * as scale from 'd3-scale';
+import rect from '../assets/svg/rect14.png';
 
 
 const BeatChart = ({ ...props }) => (
-  <ImageBackground style={styles.background}>
+  <ImageBackground style={styles.background} source={rect}>
     <View style={styles.container}>
       <YAxis
         style={{ marginHorizontal: 10  }}
         data={ props.chartscale }
         formatLabel={ (value) => value }
         contentInset={{ top: 20, bottom: 5   }}
-        svg={{ fontSize: 12, fill: 'grey' }}
+        svg={{ fontSize: 12, fill: 'black' }}
         numberOfTicks={9}
       />
       <LineChart
         style={{ height: 250 }}
         data={props.data}
-        svg={{ stroke: 'rgb(0, 255, 255)' }}
+        svg={{ stroke: 'rgb(0, 0, 0)' }}
         contentInset={{ top: 20, bottom: 5 }}
         yMin={60}
         yMax={220}

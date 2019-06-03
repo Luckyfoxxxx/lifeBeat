@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, Animated } from 'react-native';
 import { Svg } from 'expo';
 import SvgUri from 'react-native-svg-uri';
-import Pinard from '../assets/svg/pinard.svg';
 import { Easing } from "react-native";
 
 
@@ -54,7 +53,7 @@ class SplashScreen extends React.Component  {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: 'black',
+      backgroundColor: '#c9f7f9',
       flex: 1,
       alignItems: 'center'
       
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
 
 
-        color: '#00FFFF',
+        color: 'black',
     },
 
     img: {

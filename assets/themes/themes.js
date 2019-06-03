@@ -1,7 +1,10 @@
 import React from 'react';
 export const themes = {
     light: {
-
+        background: '#c9f7f9',
+        textcolor: 'black',
+        tapbutton: '#eec3fd',
+        graphdangerarea: '#A0C5C7'
     },
 
     dark: {
